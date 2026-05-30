@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- =========================
+       CONFIGURACIÓN GENERAL
+  ========================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Magdiel.SC | Portfolio Micelial</title>
+
+  <!-- =========================
+       CSS PRINCIPAL
+  ========================== -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- =========================
+       LIBRERÍA VIS-NETWORK
+       Dibuja la red de nodos
+  ========================== -->
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+
+<body>
+
+  <!-- =========================
+       FONDO red apololnian
+  ========================== -->
+  <canvas id="bg"></canvas>
+
+  <!-- =========================
+       PANEL IZQUIERDO PÚBLICO
+  ========================== -->
+  <aside class="sidebar">
+    <h1>MAGDIEL.SC</h1>
+
+    <p>Portfolio micelial</p>
+
+    <p class="small-text">
+      Red viva de proyectos, oficios, música, diseño y experimentos digitales.
+    </p>
+
+    <hr>
+
+    <p class="small-text">
+      Explora los nodos para descubrir conexiones entre áreas creativas.
+    </p>
+  </aside>
+
+  <!-- =========================
+       ZONA CENTRAL
+       Aquí se dibuja la red pública
+  ========================== -->
+  <main>
+    <section id="network"></section>
+  </main>
+
+  <!-- =========================
+     PANEL DERECHO
+========================== -->
+
+  <aside class="info" id="info">
+    <h2>Info del nodo</h2>
+
+    <p>
+      Haz click en un nodo para ver su información.
+    </p>
+  </aside>
+
+  <!-- =========================
+     BOTONES ADMIN
+========================== -->
+
+  <button id="btnAdmin">
+    + Nodo
+  </button>
+
+  <button id="btnConexion">
+    + Conexión
+  </button>
+
+  <!-- =========================
+     MODAL NODO
+========================== -->
+
+  <div class="modal-admin" id="modalAdmin">
+
+    <div class="modal-contenido">
+
+      <button type="button" class="modal-cerrar" id="cerrarModalAdmin">
+        ×
+      </button>
+
+      <div class="tabs-admin">
+
+        <button type="button" id="tabNodo">
+          Nodo
+        </button>
+
+        <button type="button" id="tabConexion">
+          Conexión
+        </button>
+
+      </div>
+
+      <section id="panelNodo">
+
+        <h2 id="tituloFormulario">
+          Editar nodo
+        </h2>
+
+        <form id="formNodo">
+
+          <input type="hidden" id="idNodo">
+
+          <label>Nombre</label>
+          <input type="text" id="nombreNodo" required>
+
+          <label>Categoría</label>
+          <select id="categoriaNodo">
+            <option value="nucleo">Núcleo</option>
+            <option value="web">Web</option>
+            <option value="arte">Arte</option>
+            <option value="sonido">Sonido</option>
+            <option value="marketing">Marketing</option>
+            <option value="academico">Académico</option>
+            <option value="experimento">Experimento</option>
+            <option value="cliente">Cliente</option>
+          </select>
+
+          <label>Descripción</label>
+          <textarea id="descripcionNodo"></textarea>
+
+          <label>Link</label>
+          <input type="url" id="linkNodo">
+
+          <label>Energía</label>
+          <input type="number" id="energiaNodo" min="1" max="100" value="50">
+
+          <label>Nivel</label>
+          <input type="number" id="nivelNodo" min="1" max="10" value="1">
+
+          <label>Conectar este nodo nuevo con</label>
+          <select id="conexionNodoNuevo" multiple size="6">
+          </select>
+
+          <label>Tipo de relación inicial</label>
+          <select id="relacionNodoNuevo">
+            <option value="desarrolla">desarrolla</option>
+            <option value="inspira">inspira</option>
+            <option value="investiga">investiga</option>
+            <option value="colabora">colabora</option>
+            <option value="contiene">contiene</option>
+          </select>
+
+          <button type="submit">
+            Guardar nodo
+          </button>
+
+          <button type="button" id="btnEliminarNodo">
+            Eliminar nodo
+          </button>
+
+        </form>
+
+      </section>
+
+      <section id="panelConexion">
+
+        <h2 id="tituloConexion">
+          Crear conexión
+        </h2>
+
+        <form id="formConexion">
+
+          <input type="hidden" id="idConexion">
+
+          <label>Origen</label>
+          <select id="conexionOrigen"></select>
+
+          <label>Destino</label>
+          <select id="conexionDestino"></select>
+
+          <label>Dirección</label>
+          <select id="direccionConexion">
+            <option value="normal">Origen → Destino</option>
+            <option value="inversa">Destino → Origen</option>
+          </select>
+
+          <label>Relación</label>
+          <select id="tipoRelacion">
+            <option value="desarrolla">desarrolla</option>
+            <option value="inspira">inspira</option>
+            <option value="investiga">investiga</option>
+            <option value="colabora">colabora</option>
+            <option value="contiene">contiene</option>
+          </select>
+
+          <h3>Conexiones existentes</h3>
+          <div id="listaConexionesNodo"></div>
+
+          <button type="submit">
+            Guardar conexión
+          </button>
+
+          <button type="button" id="btnEliminarConexion">
+            Eliminar conexión
+          </button>
+
+        </form>
+
+      </section>
+
+    </div>
+
+  </div>
+  <!-- =========================
+     SCRIPTS
+========================== -->
+
+
+  <script src="js/apollonian.js"></script>
+  <script src="js/graph.js"></script>
+  <script src="js/public.js"></script>
+  <script src="js/admin-mode.js"></script>
+
+</body>
+
+</html>
